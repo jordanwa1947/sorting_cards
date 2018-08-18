@@ -13,5 +13,13 @@ class Guess
     else
       return false
     end
-  end 
+  end
+
+  def feedback
+    if correct? == true
+      "correct"
+    else
+      "incorrect"
+    end
+  end
 end
