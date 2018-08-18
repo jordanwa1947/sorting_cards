@@ -3,7 +3,7 @@ require 'minitest/pride'
 require './lib/guess'
 require './lib/card'
 require './lib/deck'
-require 'pry'
+
 class DeckTest < Minitest::Test
   def setup
     @card_1 = Card.new("3","Hearts")
