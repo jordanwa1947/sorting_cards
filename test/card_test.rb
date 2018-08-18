@@ -1,6 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-require './lib/card'
+
 
 
 class CardTest < Minitest::Test
@@ -20,3 +18,5 @@ class CardTest < Minitest::Test
     assert_equal expected, actual
   end
 end 
+
+
