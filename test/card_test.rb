@@ -2,6 +2,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/card'
 
+
 class CardTest < Minitest::Test
   def setup
     @card = Card.new("Ace", "Spades")
@@ -18,3 +19,5 @@ class CardTest < Minitest::Test
     actual = @card.suit
     assert_equal expected, actual
   end
+
+  def
