@@ -20,4 +20,18 @@ class GuessTest < Minitest::Test
     actual = @guess.card
     assert_instance_of expected, actual
   end
+
+  def test_the_correct_method_compares_guesses_and_returns_false_without_match
+    expected = false
+    actual = @guess.correct?
+    refute expected, actual
+  end
+
+  def test_the_correct_method_compares_guesses_and_returns_true_with_match
+    card = Card.new("Ace", "Spades")
+    guess = Guess.new("Ace of Spades", card)
+    expected = true
+    actual = guess.correct?
+    assert expected, actual
+  end 
 end
