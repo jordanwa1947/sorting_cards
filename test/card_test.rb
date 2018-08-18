@@ -19,5 +19,4 @@ class CardTest < Minitest::Test
     actual = @card.suit
     assert_equal expected, actual
   end
-
-  def
+end 
