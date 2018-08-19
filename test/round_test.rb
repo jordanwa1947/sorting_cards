@@ -31,6 +31,7 @@ class RoundTest < Minitest::Test
     actual = @round.current_card
     assert_equal expected, actual
   end
+
   def test_that_record_guess_method_returns_an_instance_of_deck_class
     actual = @round.record_guess({value: "3", suit: "Hearts"})
     assert_instance_of Guess, actual
@@ -41,5 +42,12 @@ class RoundTest < Minitest::Test
     expected = 1
     actual = @round.guesses.count
     assert_equal expected, actual
+  end
+
+  def test_that_guesses_and_cards_are_compared_with_feedback_given
+    @round.record_guess({value: "3", suit: "Hearts"})
+    @round.record_guess({value: "Ace", suit: "Spades"})
+    assert_equal "Correct", @round.guesses.first.feedback
+    assert_equal "Incorrect", @round.guesses.last.feedback
   end
 end
