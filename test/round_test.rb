@@ -31,7 +31,11 @@ class RoundTest < Minitest::Test
     assert_equal expected, actual
   end
 
+<<<<<<< HEAD
   def test_that_record_guess_method_returns_an_instance_of_deck_class
+=======
+  def test_that_record_guess_method_returns_an_instance_of_guess_class
+>>>>>>> fbfa6222dae96c0b871ee33802c7dcd22d8af507
     actual = @round.record_guess({value: "3", suit: "Hearts"})
     assert_instance_of Guess, actual
   end
