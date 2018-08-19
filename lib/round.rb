@@ -1,7 +1,7 @@
 require './lib/deck'
 require './lib/guess'
 require './lib/card'
-require 'pry'
+
 class Round
   attr_reader :deck, :guesses
   def initialize(deck)
@@ -18,5 +18,15 @@ class Round
     one_guess = "#{array[0]} of #{array[1]}"
     @guesses << card_guess = Guess.new(one_guess, current_card)
     card_guess
+  end
+
+  def number_correct
+    correct = @guesses.find_all { |guess| guess.correct?}
+    correct.count
+  end
+
+  def percent_correct
+    fraction = (number_correct.round(1) / @guesses.count)
+    (fraction *= 100).round
   end
 end
