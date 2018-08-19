@@ -12,7 +12,6 @@ class RoundTest < Minitest::Test
     @card_2 = Card.new("4", "Clubs")
     @deck = Deck.new([@card_1, @card_2])
     @round = Round.new(@deck)
-    @guess = Guess.new("Ace of Spades", @card_1)
   end
 
   def test_that_the_deck_object_is_passed_to_round
@@ -31,7 +30,8 @@ class RoundTest < Minitest::Test
     actual = @round.current_card
     assert_equal expected, actual
   end
-  def test_that_record_guess_method_returns_an_instance_of_deck_class
+
+  def test_that_record_guess_method_returns_an_instance_of_guess_class
     actual = @round.record_guess({value: "3", suit: "Hearts"})
     assert_instance_of Guess, actual
   end
@@ -42,4 +42,25 @@ class RoundTest < Minitest::Test
     actual = @round.guesses.count
     assert_equal expected, actual
   end
+
+  def test_that_guesses_and_cards_are_compared_with_feedback_given
+    @round.record_guess({value: "3", suit: "Hearts"})
+    @round.record_guess({value: "Ace", suit: "Spades"})
+    assert_equal "Correct", @round.guesses.first.feedback
+    assert_equal "Incorrect", @round.guesses.last.feedback
+  end
+
+  def test_that_the_number_correct_method_returns_the_number_of_correct_guesses
+    @round.record_guess({value: "3", suit: "Hearts"})
+    @round.record_guess({value: "Ace", suit: "Spades"})
+    actual = @round.number_correct
+    assert_equal 1, actual
+  end
+
+  def test_that_the_percent_correct_method_returns_the_correct_percent_correct
+    @round.record_guess({value: "3", suit: "Hearts"})
+    @round.record_guess({value: "Ace", suit: "Spades"})
+    actual = @round.percent_correct
+    assert_equal 50, actual
+  end 
 end
