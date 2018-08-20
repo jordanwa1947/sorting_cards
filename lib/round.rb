@@ -26,11 +26,8 @@ class Round
   end
 
   def percent_correct
-<<<<<<< HEAD
     fraction = (number_correct.round(1) / @guesses.count)
-=======
     fraction = (number_correct.to_f / @guesses.count)
->>>>>>> fbfa6222dae96c0b871ee33802c7dcd22d8af507
     (fraction *= 100).round
   end
 end
