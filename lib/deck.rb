@@ -1,6 +1,6 @@
 class Deck
   attr_reader :cards
-  def initialize(cards = [])
+  def initialize(cards)
     @cards = cards
   end
 
@@ -11,6 +11,10 @@ class Deck
   def sort
     convert_to_sort
     (cards.length - 1).times do
+      x = 1
+      (cards.length - 1).times do
+        if cards[x].value == cards[x - 1].value
+          if cards[x].suit < cards[x - 1].suit
       (array.length - 1).times do
         x = 1
         (cards.length - 1).times do
