@@ -10,16 +10,11 @@ class Deck
 
   def sort
     convert_to_sort
-    (cards.length - 1).times do
-      x = 1
       (cards.length - 1).times do
-        if cards[x].value == cards[x - 1].value
-          if cards[x].suit < cards[x - 1].suit
-      (array.length - 1).times do
         x = 1
         (cards.length - 1).times do
           if cards[x].value == cards[x - 1].value
-            if cards[x].suit > cards[x - 1].suit
+            if cards[x].suit < cards[x - 1].suit
               cards[x], cards[x - 1] = cards[x - 1], cards[x]
             end
           end
@@ -58,7 +53,5 @@ class Deck
         end
         array
       end
-    end
-    array
     end
   end
