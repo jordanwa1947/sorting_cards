@@ -7,24 +7,36 @@ class Deck
   def count
     @cards.length
   end
-
+# insertion sort
   def sort
-  convert_to_sort
+    convert_to_sort
     (cards.length - 1).times do
       x = 1
-      (cards.length - 1).times do
-        if cards[x].value == cards[x - 1].value
-          if cards[x].suit < cards[x - 1].suit
-            cards[x], cards[x - 1] = cards[x - 1], cards[x]
-          end
-        end
-        if cards[x].value < cards[x - 1].value
-          cards[x], cards[x - 1] = cards[x - 1], cards[x]
-        end
-      x += 1
-      end
+      first_round(x)
     end
     convert_back
+  end
+
+  def first_round(x)
+    (cards.length - 1).times do
+      same_value_cards(x)
+      different_value_cards(x)
+    x += 1
+    end
+  end
+
+  def same_value_cards(x)
+    if cards[x].value == cards[x - 1].value
+      if cards[x].suit < cards[x - 1].suit
+        cards[x], cards[x - 1] = cards[x - 1], cards[x]
+      end
+    end
+  end
+
+  def different_value_cards(x)
+    if cards[x].value < cards[x - 1].value
+      cards[x], cards[x - 1] = cards[x - 1], cards[x]
+    end
   end
 
   def convert_to_sort
@@ -37,7 +49,6 @@ class Deck
       else
         array << card
       end
-        array
     end
   end
 
@@ -51,7 +62,6 @@ class Deck
       else
         array << card
       end
-      array
     end
   end
 end
