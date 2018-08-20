@@ -1,6 +1,6 @@
 class Deck
   attr_reader :cards
-  def initialize(cards = [])
+  def initialize(cards)
     @cards = cards
   end
 
@@ -14,7 +14,7 @@ class Deck
       x = 1
       (cards.length - 1).times do
         if cards[x].value == cards[x - 1].value
-          if cards[x].suit > cards[x - 1].suit
+          if cards[x].suit < cards[x - 1].suit
             cards[x], cards[x - 1] = cards[x - 1], cards[x]
           end
         end
