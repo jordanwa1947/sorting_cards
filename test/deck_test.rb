@@ -27,9 +27,23 @@ class DeckTest < Minitest::Test
     assert_equal expected, actual
   end
 
-  def test_that_sort_sorts_the_deck_of_cards
+  def test_that_the_sort_method_sorts_the_deck_of_cards_from_lowest_to_highest
     expected = [@card_1, @card_3, @card_2, @card_5, @card_4]
     actual = @deck.sort
     assert_equal expected, actual
+  end
+
+  def test_that_convert_to_test_converts_aces_to_laces
+    @deck.convert_to_sort
+    expected = "Lace"
+    assert_equal expected, @card_4.value
+    assert_equal expected, @card_5.value
+  end
+
+  def test_that_convert_back_reverts_Laces_back_to_Aces
+    @deck.convert_back
+    expected = "Ace"
+    assert_equal expected, @card_5.value
+    assert_equal expected, @card_4.value
   end
 end

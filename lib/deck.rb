@@ -5,7 +5,7 @@ class Deck
   end
 
   def count
-    @cards.length
+    cards.length
   end
 # insertion sort
   def sort
@@ -40,28 +40,27 @@ class Deck
   end
 
   def convert_to_sort
-    array = []
-    @cards.each do |card|
+    cards.map do |card|
       if card.value == "Ace"
-        array << card.value = "Lace"
-      elsif  card.value == "Queen"
-        array << card.value = "Keen"
+        card.value = "Lace"
+      elsif card.value == "Queen"
+        card.value = "Keen"
       else
-        array << card
+        card.value
       end
     end
   end
 
   def convert_back
-    array = []
-    @cards.each do |card|
+    cards.map do |card|
       if card.value == "Lace"
-        array << card.value = "Ace"
-      elsif  card.value == "Keen"
-        array << card.value = "Queen"
+        card.value = "Ace"
+      elsif card.value == "Keen"
+        card.value = "Queen"
       else
-        array << card
+        card.value
       end
     end
+  return cards
   end
 end
