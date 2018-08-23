@@ -86,15 +86,6 @@ class Deck
   def make_lists
    convert_to_sort
    card_arrays = @cards.map { |card| [] << card }
-   make_arrays_even(card_arrays)
-  end
-
-  def make_arrays_even(card_arrays)
-    if @cards.length.odd?
-      card_arrays[0] << card_arrays[1][0]
-      card_arrays.delete_at(1)
-      card_arrays
-    end
   end
 
   def merge(left, right)
