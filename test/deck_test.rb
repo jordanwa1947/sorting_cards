@@ -51,4 +51,9 @@ class DeckTest < Minitest::Test
     assert_equal "Ace", @card_4.value
     assert_equal "Queen", @card_6.value
   end
+  def test_that_the_merge_sort_method_sorts_the_deck_of_cards_from_lowest_to_highest
+    actual = @deck.merge_sort
+    expected = [@card_1, @card_3, @card_2, @card_6, @card_7, @card_5, @card_4]
+    assert = expected, actual
+  end
 end

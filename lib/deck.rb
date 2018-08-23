@@ -1,4 +1,4 @@
-require 'pry'
+
 class Deck
   attr_reader :cards
   def initialize(cards)
@@ -46,28 +46,73 @@ class Deck
   end
 
   def convert_to_sort
-    array = []
-    @cards.each do |card|
+    cards.map do |card|
       if card.value == "Ace"
-        array << card.value = "Lace"
-      elsif  card.value == "Queen"
-        array << card.value = "Keen"
+        card.value = "Lace"
+      elsif card.value == "Queen"
+        card.value = "Keen"
       else
-        array << card
+        card.value
       end
     end
   end
 
   def revert_back
-    array = []
-    @cards.each do |card|
+    cards.map do |card|
       if card.value == "Lace"
-        array << card.value = "Ace"
-      elsif  card.value == "Keen"
-        array << card.value = "Queen"
+        card.value = "Ace"
+      elsif card.value == "Keen"
+        card.value = "Queen"
       else
-        array << card
+        card.value
       end
     end
+  return cards
   end
+
+  def merge_sort
+    two_arrays = two_lists
+    merge(two_arrays[0], two_arrays[1])
+    revert_back
+  end
+
+  def two_lists
+    lists = make_lists
+    two_arrays = lists.map do |card_array|
+      merge(lists.shift, lists.shift)
+    end
+  end
+
+  def make_lists
+   convert_to_sort
+   card_arrays = @cards.map { |card| [] << card }
+   make_arrays_even(card_arrays)
+  end
+
+  def make_arrays_even(card_arrays)
+    if @cards.length.odd?
+      card_arrays[0] << card_arrays[1][0]
+      card_arrays.delete_at(1)
+      card_arrays
+    end
+  end
+
+  def merge(left, right)
+    if left.empty?
+      right
+    elsif right.empty?
+      left
+    elsif left[0].value == right[0].value
+      if left[0].value < right[0].value
+        [left[0]] + merge(left[1..left.length], right)
+      else
+        [right[0]] + merge(left, right[1..right.length])
+      end
+    elsif left[0].value < right[0].value
+      [left[0]] + merge(left[1..left.length], right)
+    else
+      [right[0]] + merge(left, right[1..right.length])
+    end
+  end
+
 end
